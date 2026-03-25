@@ -28,11 +28,10 @@ for i = 1:T
 end
 
 k = T; 
-no_iterations = 0;
 
-eps = zeros(T);
+eps = zeros(T,1);
 
-while true
+for iteration = 1:10000
     kp1 = k+1; 
     if kp1 > T
         kp1 = 1;
@@ -45,8 +44,7 @@ while true
     if k == 0
         k = T;
     end
-    no_iterations = no_iterations + 1;
-    if sum(eps) < 1e-6
+    if max(eps) < 1e-1
         break
     end
 end
@@ -59,5 +57,4 @@ for k = 1:T
     end
     K(:,:,k) = -(B(:,:,k)' * P(:,:,kp1) * B(:,:,k) + R)^(-1) * B(:,:,k)' * P(:,:,kp1) * A;
 end
-disp(no_iterations)
 end
