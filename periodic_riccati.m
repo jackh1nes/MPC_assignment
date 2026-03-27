@@ -44,7 +44,7 @@ for iteration = 1:10000
     if k == 0
         k = T;
     end
-    if max(eps) < 1e-1
+    if max(eps) < 1e-3
         break
     end
 end
